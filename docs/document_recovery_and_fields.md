@@ -105,8 +105,8 @@ Bộ 12 ca token OCR tổng hợp chạy trước–sau đạt **8/12 → 12/12*
 Đã chạy weights thật trên hai thẻ tổng hợp: thẻ học sinh và bằng lái đều trả
 `review`, với bộ trường tương ứng 4 và 5 mục. Hai ca không có chân dung; không
 đánh giá selfie/PAD hay độ chính xác OCR trên giấy tờ thật trong lượt này.
-Kết quả và bản code trước sửa nằm tại
-[báo cáo độc lập](../outputs/independent_work_20261114_01/).
+Báo cáo chi tiết và bản code trước sửa nằm trong thư mục local
+`outputs/independent_work_20261114_01/`; thư mục này không được commit vào repository.
 
 Chỉ sửa bản ứng dụng tại thư mục project gốc. Parser/reader của worktree
 nghiên cứu và phiếu IFV đã khóa được giữ nguyên. 16 tài sản model khớp hash;
