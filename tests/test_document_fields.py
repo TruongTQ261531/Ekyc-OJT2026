@@ -59,3 +59,23 @@ def test_conflicting_label_values_are_not_overwritten_by_specialized_guess():
 def test_student_number_is_not_duplicated_as_an_identity_card_number():
     fields,_,_=observed_information(lines('THẺ HỌC SINH','Mã học sinh: HS20260042'),{'id_number':'HS20260042'})
     assert fields['student_id']=='HS20260042' and 'id_number' not in fields
+
+
+def test_conflicting_names_are_omitted_instead_of_combined_or_replaced_by_a_guess():
+    fields,items,_=observed_information(lines('Họ và tên: NGUYỄN VĂN AN',
+        'Họ và tên: TRẦN THỊ LAN'),{'full_name':'NGUYỄN VĂN AN'})
+    assert 'full_name' not in fields
+    assert all(item['key']!='full_name' for item in items)
+
+
+def test_repeated_identical_name_and_split_label_value_are_kept():
+    for data in (lines('Họ và tên: NGUYỄN VĂN AN','Full name: NGUYỄN VĂN AN'),
+                 lines('Họ và tên:','NGUYỄN VĂN AN')):
+        fields,_,_=observed_information(data,{})
+        assert fields['full_name']=='NGUYỄN VĂN AN'
+
+
+def test_unknown_label_can_have_a_single_character_value():
+    fields,items,_=observed_information(lines('Đơn vị: A'),{})
+    assert len(fields)==len(items)==1
+    assert items[0]['label']=='Đơn vị' and items[0]['value']=='A'
