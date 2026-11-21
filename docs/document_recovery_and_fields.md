@@ -86,28 +86,22 @@ cá nhân. Tùy chọn `--image`/`--camera-rect X1 Y1 X2 Y2` dùng để đọc 
 Module 4/5 giữ kiểm tra chống giả, 4 động tác/180 giây và so khớp cùng người.
 Giới hạn chống màn hình/deepfake của [bản PAD](ocr_and_pad.md) vẫn áp dụng.
 
-## Tiếp tục kỹ thuật độc lập ngày 14/11/2026
+## Bổ sung xử lý trích xuất trường — 14/11/2026
 
-Trong lúc chờ review nghiên cứu, đã sửa hai lỗi ở bước tách trường:
+Đã sửa hai lỗi ở bước tách trường:
 
 - Hai nhãn họ tên có giá trị khác nhau được giữ là mâu thuẫn và không tự điền;
-  trước đây bị nối thành một tên. Giá trị phỏng đoán từ detector cũng không
-  được dùng để lấp mâu thuẫn này. Hai lần đọc cùng tên và nhãn/giá trị tách
-  dòng vẫn hoạt động.
-- Trường tùy chỉnh có một ký tự, ví dụ `Đơn vị: A`, được giữ lại. Dấu hai chấm
-  fullwidth cũng được hỗ trợ.
+  trước đây các giá trị bị nối thành một tên. Giá trị phỏng đoán từ detector
+  cũng không được dùng để lấp mâu thuẫn này. Hai lần đọc cùng tên và nhãn/giá
+  trị tách dòng vẫn hoạt động.
+- Trường tùy chỉnh có một ký tự, ví dụ `Đơn vị: A`, được giữ lại. Dấu hai
+  chấm fullwidth cũng được hỗ trợ.
 
-Kiểm tra sau sửa: **113 test backend và 15 test giao diện camera qua**.
-Bộ 12 ca token OCR tổng hợp chạy trước–sau đạt **8/12 → 12/12**; bốn ca sửa
-được thuộc hai lỗi trên, không phải bốn lỗi model độc lập. Script:
+Theo nhật ký của lần kiểm thử sau sửa: **113 test backend và 15 test giao diện
+camera qua**. Bộ 12 ca token OCR tổng hợp đạt **8/12 → 12/12**; bốn ca được sửa
+thuộc hai lỗi trên. Script kiểm tra:
 `python -B -m scripts.audit_field_extraction --output <file JSON mới>`.
 
-Đã chạy weights thật trên hai thẻ tổng hợp: thẻ học sinh và bằng lái đều trả
-`review`, với bộ trường tương ứng 4 và 5 mục. Hai ca không có chân dung; không
-đánh giá selfie/PAD hay độ chính xác OCR trên giấy tờ thật trong lượt này.
-Báo cáo chi tiết và bản code trước sửa nằm trong thư mục local
-`outputs/independent_work_20261114_01/`; thư mục này không được commit vào repository.
-
-Chỉ sửa bản ứng dụng tại thư mục project gốc. Parser/reader của worktree
-nghiên cứu và phiếu IFV đã khóa được giữ nguyên. 16 tài sản model khớp hash;
-không training, đổi checkpoint hoặc thay các kết quả nghiên cứu cũ.
+Hai thẻ tổng hợp (thẻ học sinh và bằng lái) trả trạng thái `review` với lần
+lượt 4 và 5 trường. Cả hai không có chân dung; lượt kiểm tra này không đánh giá
+selfie, PAD hay độ chính xác OCR trên giấy tờ thật.
