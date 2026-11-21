@@ -1,3 +1,18 @@
+<<<<<<< HEAD
+=======
+# Local data and third-party model caches
+outputs/
+full_dataset_original/
+dataset_224/
+data/thumbnail_cache/
+models/*
+!models/quality_original_transfer.pth
+!models/quality_original_transfer.report.json
+!models/model_sources.json
+!models/identity_model_sources.json
+versions/
+
+>>>>>>> 4110f22
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
@@ -159,9 +174,12 @@ ENV/
 env.bak/
 venv.bak/
 
+<<<<<<< HEAD
 # Conda environments
 conda-meta/
 
+=======
+>>>>>>> 4110f22
 # Spyder project settings
 .spyderproject
 .spyproject
