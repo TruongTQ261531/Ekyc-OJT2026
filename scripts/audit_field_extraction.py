@@ -86,7 +86,7 @@ def main():
     parser.add_argument('--output', type=Path, required=True)
     args=parser.parse_args()
     report=dict(schema='application-field-regression/1', stage='OCR tokens to semantic fields',
-                evidence='Authored synthetic OCR tokens; not human IFV or model accuracy.',
+                evidence='Authored synthetic OCR tokens for application regression checks.',
                 model_calls=0, training_steps=0, current=audit(document_fields))
     if args.baseline_source:
         spec=importlib.util.spec_from_file_location('preserved_field_parser', args.baseline_source)
